@@ -414,7 +414,7 @@
       const offset = -20
       const rotation =
         P_F_given_E <= 0.25
-          ? -90 // Clamped at 45° down
+          ? -45 // Clamped at 45° down
           : P_F_given_E >= 0.75
           ? 45 // Clamped at 45° up
           : (P_F_given_E - 0.5) * 90 + offset; // Gradual rotation between -45° and +45°
