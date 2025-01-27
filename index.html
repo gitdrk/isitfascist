@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bayesian Stats Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('stripesandstars.webp');
+      background-repeat: repeat;
+      background-size: cover;
+    }
+
+    .header-image {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 16px auto;
+    }
+
+    .full-width-card {
+      background: rgba(230, 230, 224, 0.99);
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+      }
+    }
+
+    .panel {
+      flex: 1;
+    }
+
+    .card {
+      background: rgba(230, 230, 224, 0.99);
+      padding: 1rem;
+      border-radius: 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-row,
+    .input-row {
+      display: grid;
+      grid-template-columns: 20% 40% 40%;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .header-row,
+      .input-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .border {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    .posterior-label {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .slider-value {
+      font-size: 0.9rem;
+      color: #555;
+      width: 3rem;
+      text-align: left;
+    }
+
+    /* Transparent card styling */
+    .transparent-card {
+      background: rgba(255, 255, 255, 0.0);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.0);
+    }
+
+    .image-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .image-container img {
+      display: block;
+    }
+
+    .image-container .arm {
+      position: absolute;
+      right:330px;
+      top: 49%;
+      transform-origin: right center;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease-in-out;
+      z-index: 2;
+      background: none;
+    }
+
+    .arm {
+      background: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Image -->
+  <img src="isitfascist.webp" alt="Header Image" class="header-image">
+
+  <!-- Full-Width Combined Card -->
+  <div class="full-width-card">
+    <p>
+      Bayesian statistics is a way of thinking about probabilities that combines prior knowledge (what you already know) with new evidence (what you observe) to update your beliefs. For example, if you think it’s likely to rain based on the forecast, but then you see a clear sky, you update your belief using both pieces of information.
+    </p>
+  </div>
+
+  <div class="container">
+    <!-- Left Panel -->
+    <div class="panel">
+      <div class="card">
+        <div>
+          <label for="prior">Prior</label>
+          <input type="range" id="prior" class="w-full" min="0" max="100" step="0.1" value="50" oninput="updatePriorValue(this)">
+          <div class="text-center" id="priorValue">50.0%</div>
+        </div>
+        <div>
+          <!-- Header Row -->
+          <div class="header-row">
+            <div><strong>Event</strong></div>
+            <div><strong>Likelihood a fascist would do it.</strong></div>
+            <div><strong>Likelihood a non-fascist would do it</strong></div>
+          </div>
+          <!-- Input Rows -->
+          <div id="eventRows">
+            <div class="input-row">
+              <input type="text" class="border" placeholder="Describe event">
+              <div class="slider-container">
+                <input type="range" min="0" max="100" step="0.1" value="50" oninput="updateSliderValue(this)">
+                <span class="slider-value">50.0%</span>
+              </div>
+              <div class="slider-container">
+                <input type="range" min="0" max="100" step="0.1" value="50" oninput="updateSliderValue(this)">
+                <span class="slider-value">50.0%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="w-full border" onclick="addEventRow()">Add Row</button>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="panel">
+      <div class="transparent-card">
+        <div class="posterior-label" id="result">Posterior Probability: 50.0%</div>
+        <div class="image-container">
+          <img src="fasc.png" alt="Fascist Probability Image">
+          <img src="fasc-arm.png" alt="Fascist Arm" class="arm" id="armImage">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updatePriorValue(slider) {
+      document.getElementById('priorValue').innerText = parseFloat(slider.value).toFixed(1) + '%';
+      updatePosterior();
+    }
+
+    function updateSliderValue(slider) {
+      slider.nextElementSibling.innerText = parseFloat(slider.value).toFixed(1) + '%';
+      updatePosterior();
+    }
+
+    function addEventRow() {
+      const eventRows = document.getElementById('eventRows');
+      const newRow = document.createElement('div');
+      newRow.className = 'input-row';
+      newRow.innerHTML = `
+        <input type="text" class="border" placeholder="Describe event">
+        <div class="slider-container">
+          <input type="range" min="0" max="100" step="0.1" value="50" oninput="updateSliderValue(this)">
+          <span class="slider-value">50.0%</span>
+        </div>
+        <div class="slider-container">
+          <input type="range" min="0" max="100" step="0.1" value="50" oninput="updateSliderValue(this)">
+          <span class="slider-value">50.0%</span>
+        </div>
+      `;
+      eventRows.appendChild(newRow);
+      updatePosterior();
+    }
+
+    function updatePosterior() {
+      const prior = parseFloat(document.getElementById('prior').value) / 100;
+
+      const rows = document.querySelectorAll('#eventRows .input-row');
+      const events = Array.from(rows).map(row => {
+        const probDo = parseFloat(row.children[1].querySelector('input[type="range"]').value) / 100;
+        const probDont = parseFloat(row.children[2].querySelector('input[type="range"]').value) / 100;
+        return { 'P(E|F)': probDo, 'P(E|notF)': probDont };
+      });
+
+      const P_F = prior;
+      const P_notF = 1 - prior;
+
+      let likelihood_given_F = 1;
+      let likelihood_given_notF = 1;
+
+      events.forEach(event => {
+        likelihood_given_F *= event['P(E|F)'];
+        likelihood_given_notF *= event['P(E|notF)'];
+      });
+
+      const P_E = likelihood_given_F * P_F + likelihood_given_notF * P_notF;
+      const P_F_given_E = (likelihood_given_F * P_F) / P_E;
+
+      document.getElementById('result').innerText = `Posterior Probability: ${(P_F_given_E * 100).toFixed(1)}%`;
+
+      // Rotate the arm based on posterior probability
+      const armImage = document.getElementById('armImage');
+      const rotation = P_F_given_E * 90; // Rotate between 0° and 90°
+      armImage.style.transform = `rotate(${rotation}deg)`;
+    }
+
+    // Initial calculation
+    updatePosterior();
+  </script>
+</body>
+</html>
