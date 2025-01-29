@@ -78,16 +78,10 @@
       border-bottom: 1px solid black;
     }
 
-    @media (max-width: 768px) {
-      .header-row,
-      .input-row {
-        grid-template-columns: 1fr;
-      }
-    }
-
     .slider-container {
       display: flex;
       align-items: center;
+      width: 100%;
       gap: 0.5rem;
     }
 
@@ -188,6 +182,38 @@
       text-align: center;
     }
 
+            /* Responsive Design */
+            @media (max-width: 768px) {
+              .fascist-dude{
+                width:50%;
+              }
+              .arm {
+                width:100%;
+                right: 46% !important;
+                top: 45%;
+              }
+            .container {
+                padding: 15px;
+            }
+            .row-slider {
+              width:90px;
+            }
+            body {
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            body {
+                font-size: 14px;
+            }
+        }
+
   </style>
 </head>
 <body>
@@ -232,11 +258,11 @@
                 </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
-                <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
               <div class="slider-container">
-                <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
             </div>
@@ -249,11 +275,11 @@
                 </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
-                <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
               <div class="slider-container">
-                <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
             </div>
@@ -266,11 +292,11 @@
                 </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
-                <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
               <div class="slider-container">
-                <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
             </div>
@@ -283,11 +309,11 @@
                 </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
-                <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
               <div class="slider-container">
-                <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
             </div>
@@ -300,11 +326,11 @@
                 </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
-                <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
               <div class="slider-container">
-                <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
             </div>
@@ -320,7 +346,7 @@
       <div class="transparent-card">
         <div class="posterior-label" id="result">Posterior (Likelihood your reasoning suggests fascism): 50%</div>
         <div class="image-container">
-          <img src="fasc.png" alt="Fascist Probability Image">
+          <img src="fasc.png" class="fascist-dude" alt="Fascist Dude">
           <img src="fasc-arm.png" alt="Fascist Arm" class="arm" id="armImage">
         </div>
       </div>
@@ -370,11 +396,11 @@
       newRow.innerHTML = `
         <input type="text" class="border" placeholder="Describe event">
         <div class="slider-container">
-          <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+          <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
           <span class="slider-value">50%</span>
         </div>
         <div class="slider-container">
-          <input type="range" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+          <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
           <span class="slider-value">50%</span>
         </div>
       `;
