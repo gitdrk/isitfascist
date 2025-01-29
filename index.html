@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bayesian Stats Page</title>
+  <title>Bayesian Reasoning</title>
   <style>
         html, body {
     margin: 0;
@@ -197,10 +197,10 @@
   <!-- Full-Width Combined Card -->
   <div class="full-width-card">
     <p id="intro">
-      Not sure if what you’ve seen is something a fascist would do? Can’t trust your own eyes?
+      Unsure if what you’ve witnessed aligns with fascist behavior? Doubting your own judgment? Struggling to connect a series of events to a clear conclusion?
     </p>
     <p>
-      With this calculator, you can use Bayes’ Theorem to input a list of events, the likelihood a fascist would do them, and the likelihood a non-fascist would. Let the math guide your suspicions!
+      With this calculator, you can apply Bayes’ Theorem to assess events collectively and compare how likely they are to be done by a fascist or non-fascist. See probabilities together and let Bayes refine your perspective!
     </p>
   </div>
 
@@ -210,7 +210,7 @@
       <div class="card">
         <div>
           <!-- <span id="prior-label">Prior (or prior belief it is fascist)</span> -->
-          <label id="prior-label" for="prior">Prior (did you already think this was fascist?)</label>
+          <label id="prior-label" for="prior">Prior: Your initial belief about them being a fascist.</label>
           <input type="range" id="prior" class="w-full" min="1" max="99" step="1" value="50" oninput="updatePriorValue(this)">
           <div class="text-center" id="priorValue">50%</div>
         </div>
@@ -225,9 +225,9 @@
           <div id="eventRows">
 
             <div class="input-row">
-              <span class="border">
-                <a href="https://www.cnn.com/2025/01/25/europe/elon-musk-germany-afd-protests-intl-latam/index.html">
-                  Speaking at German Afd party event.
+              <span class="">
+                <a href="https://www.rollingstone.com/culture/culture-news/elon-musk-great-replacement-conspiracy-theory-1234941337/">
+                  <em>Allegedly</em> endorsing great-replacement.
                   </a>
                 </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
@@ -243,8 +243,8 @@
 
             <div class="input-row">
               <span class="">
-                <a href="https://www.rollingstone.com/culture/culture-news/elon-musk-great-replacement-conspiracy-theory-1234941337/">
-                  <em>Allegedly</em> endorsing great-replacement.
+                <a href="https://knowyourmeme.com/editorials/guides/has-elon-musk-been-caught-posting-on-4chan-analyzing-the-viral-rumor-surrounding-adrian-dittmann-theories">
+                  Possibly having an alter ego that calls self a Fren on 4chan?
                   </a>
                 </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
@@ -293,9 +293,9 @@
             </div>
 
             <div class="input-row">
-              <span class="">
-                <a href="https://knowyourmeme.com/editorials/guides/has-elon-musk-been-caught-posting-on-4chan-analyzing-the-viral-rumor-surrounding-adrian-dittmann-theories">
-                  Possibly having an alter ego that calls self a Fren on 4chan?
+              <span class="border">
+                <a href="https://www.cnn.com/2025/01/25/europe/elon-musk-germany-afd-protests-intl-latam/index.html">
+                  Speaking at AfD event urging to move past 'Nazi guilt'.
                   </a>
                 </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
@@ -309,7 +309,6 @@
               </div>
             </div>
 
-
           </div>
         </div>
         <button class="w-full border" onclick="addEventRow()">Add Your Own</button>
@@ -319,7 +318,7 @@
     <!-- Right Panel -->
     <div class="panel">
       <div class="transparent-card">
-        <div class="posterior-label" id="result">Posterior (the likelihood the events indicate fascism): 50%</div>
+        <div class="posterior-label" id="result">Posterior (Likelihood your reasoning suggests fascism): 50%</div>
         <div class="image-container">
           <img src="fasc.png" alt="Fascist Probability Image">
           <img src="fasc-arm.png" alt="Fascist Arm" class="arm" id="armImage">
