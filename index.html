@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bayesian Reasoning</title>
   <style>
-        html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -29,14 +32,19 @@
       margin: 16px auto;
     }
 
-    .full-width-card {
+    .base-element {
       background: rgba(230, 230, 224, 0.99);
-      padding: 1rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin: 1rem;
-      text-align: center;
       position: relative;
       z-index: 3;
+      border: 1px solid black;
+      border-radius: 10px;
+      box-shadow: 1px 2px 10px black;
+    }
+
+    .full-width-card {
+      padding: 1rem;
+      margin: 1rem;
+      text-align: center;
     }
 
     .container {
@@ -57,13 +65,11 @@
       flex: 1;
     }
 
-    .card {
-      background: rgba(230, 230, 224, 0.99);
+
+
+    .slider-card {
       padding: 1rem;
-      border-radius: 0;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      position: relative;
-      z-index: 3;
+
     }
 
     .header-row,
@@ -105,7 +111,6 @@
       font-weight: bold;
       text-align: center;
       margin-bottom: 1rem;
-      background-color: rgba(230, 230, 224);
       width: 100%;
     }
 
@@ -118,7 +123,7 @@
 
     /* Transparent card styling */
     .transparent-card {
-      background: rgba(255, 255, 255, 0.0);
+      background: rgba(255, 255, 255, 0.0) !important;
       padding: 1rem;
       padding-top: 0rem;
       padding-bottom: 0rem;
@@ -143,17 +148,17 @@
 
     .image-container .arm {
       position: absolute;
-    right: 38%;
-    top: 42%;
-    transform-origin: calc(90% - 20px) center;
-    transform: rotate(-15deg);
-    transition: transform 0.3s ease-in-out;
-    z-index: 2;
-    background: none;
-    overflow: hidden;
+      right: 38%;
+      top: 42%;
+      transform-origin: calc(90% - 20px) center;
+      transform: rotate(-15deg);
+      transition: transform 0.3s ease-in-out;
+      z-index: 2;
+      background: none;
+      overflow: hidden;
     }
 
- 
+
     #prior-label {
       font-size: 1.2;
       font-weight: bold;
@@ -168,87 +173,98 @@
       text-align: center;
       background: rgba(230, 230, 224, 0.99);
       padding: 1rem;
-      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 -2px 4px black;
       position: relative;
       z-index: 3;
       font-size: 0.9rem;
     }
 
-    .bottom-card{
+    .bottom-card {
       text-align: left;
     }
 
-    .bottom-card h2{
+    .bottom-card h2 {
       text-align: center;
     }
 
-            /* Responsive Design */
-            @media (max-width: 768px) {
-              .fascist-dude{
-                width:50%;
-              }
-              .arm {
-                width:100%;
-                right: 42% !important;
-                top: 43% !important;
-              }
-            .container {
-                padding: 15px;
-            }
-            .row-slider {
-              width:90px;
-            }
-            body {
-                font-size: 16px;
-            }
-            .header-row,
-          .input-row {
-            display: grid;
-            grid-template-columns: 26% 37% 37%;
-            gap: 0.5rem;
-            align-items: center;
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid black;
-          }
-        }
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-            h2 {
-                font-size: 20px;
-            }
-            body {
-                font-size: 14px;
-            }
-        }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .fascist-dude {
+        width: 50%;
+      }
 
+      .arm {
+        width: 100%;
+        right: 42% !important;
+        top: 43% !important;
+      }
+
+      .container {
+        padding: 15px;
+      }
+
+      .row-slider {
+        width: 90px;
+      }
+
+      body {
+        font-size: 16px;
+      }
+
+      .header-row,
+      .input-row {
+        display: grid;
+        grid-template-columns: 26% 37% 37%;
+        gap: 0.5rem;
+        align-items: center;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid black;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 10px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      body {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <!-- Header Image -->
-  <img src="isitfascist.webp" alt="Header Image" class="header-image">
+  <img src="isitfascist.webp" alt="Header Image" class="header-image base-element">
 
   <!-- Full-Width Combined Card -->
-  <div class="full-width-card">
+  <div class="base-element full-width-card">
     <p id="intro">
-      Unsure if what you’ve witnessed aligns with fascist behavior? Doubting your own judgment? Struggling to connect a series of events to a clear conclusion?
+      Unsure if what you’ve witnessed aligns with fascist behavior? Doubting your own judgment? Struggling to connect a
+      series of events to a clear conclusion?
     </p>
     <p>
-      With this calculator, you can apply Bayes’ Theorem to assess events collectively and compare how likely they are to be done by a fascist or non-fascist. See probabilities together and let Bayes refine your perspective!
+      With this calculator, you can apply Bayes’ Theorem to assess events collectively and compare how likely they are
+      to be done by a fascist or non-fascist. See probabilities together and let Bayes refine your perspective!
     </p>
   </div>
 
   <div class="container">
     <!-- Left Panel -->
     <div class="panel">
-      <div class="card">
+      <div class="base-element slider-card">
         <div>
           <!-- <span id="prior-label">Prior (or prior belief it is fascist)</span> -->
           <label id="prior-label" for="prior">Prior: Your initial belief about them being a fascist.</label>
-          <input type="range" id="prior" class="w-full" min="1" max="99" step="1" value="50" oninput="updatePriorValue(this)">
+          <input type="range" id="prior" class="w-full" min="1" max="99" step="1" value="50"
+            oninput="updatePriorValue(this)">
           <div class="text-center" id="priorValue">50%</div>
         </div>
         <div>
@@ -263,68 +279,80 @@
 
             <div class="input-row">
               <span class="">
-                <a href="https://www.rollingstone.com/culture/culture-news/elon-musk-great-replacement-conspiracy-theory-1234941337/">
+                <a
+                  href="https://www.rollingstone.com/culture/culture-news/elon-musk-great-replacement-conspiracy-theory-1234941337/">
                   <em>Allegedly</em> endorsing great-replacement.
-                  </a>
-                </span>
+                </a>
+              </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
-                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
               <div class="slider-container">
-                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
             </div>
 
             <div class="input-row">
               <span class="">
-                <a href="https://knowyourmeme.com/editorials/guides/has-elon-musk-been-caught-posting-on-4chan-analyzing-the-viral-rumor-surrounding-adrian-dittmann-theories">
+                <a
+                  href="https://knowyourmeme.com/editorials/guides/has-elon-musk-been-caught-posting-on-4chan-analyzing-the-viral-rumor-surrounding-adrian-dittmann-theories">
                   Possibly having an alter ego that calls self a Fren on 4chan?
-                  </a>
-                </span>
+                </a>
+              </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
-                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
               <div class="slider-container">
-                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
             </div>
 
             <div class="input-row">
               <span class="">
-                <a href="https://www.theguardian.com/technology/2025/jan/21/the-gesture-speaks-for-itself-germans-divided-over-musks-apparent-nazi-salute">
+                <a
+                  href="https://www.theguardian.com/technology/2025/jan/21/the-gesture-speaks-for-itself-germans-divided-over-musks-apparent-nazi-salute">
                   Awkware gesture resembling a Roman Salute.
-                  </a>
-                </span>
+                </a>
+              </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
-                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
               <div class="slider-container">
-                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
             </div>
 
             <div class="input-row">
               <span class="">
-                <a href="https://www.forbes.com/sites/maryroeloffs/2025/01/23/anti-defamation-league-condemns-elon-musk-holocaust-jokes-after-defending-awkward-gesture/">
+                <a
+                  href="https://www.forbes.com/sites/maryroeloffs/2025/01/23/anti-defamation-league-condemns-elon-musk-holocaust-jokes-after-defending-awkward-gesture/">
                   Holocaust jokes after the awkward gesture.
-                  </a>
-                </span>
+                </a>
+              </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
-                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
               <div class="slider-container">
-                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
             </div>
@@ -333,15 +361,17 @@
               <span class="border">
                 <a href="https://www.cnn.com/2025/01/25/europe/elon-musk-germany-afd-protests-intl-latam/index.html">
                   Speaking at AfD event urging to move past 'Nazi guilt'.
-                  </a>
-                </span>
+                </a>
+              </span>
               <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
-                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
               <div class="slider-container">
-                <input type="range" class="row-slider" min="1" max="99" step="1" value="50" oninput="updateSliderValue(this)">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
                 <span class="slider-value">50%</span>
               </div>
             </div>
@@ -355,7 +385,8 @@
     <!-- Right Panel -->
     <div class="panel">
       <div class="transparent-card">
-        <div class="posterior-label" id="result">Posterior (Likelihood your reasoning suggests fascism): 50%</div>
+        <div class="posterior-label base-element" id="">Posterior (Likelihood your reasoning suggests fascism): <span
+            id="result">50%</span></div>
         <div class="image-container">
           <img src="fasc2.png" class="fascist-dude" alt="Fascist Dude">
           <img src="fasc-arm.png" alt="Fascist Arm" class="arm" id="armImage">
@@ -364,29 +395,34 @@
     </div>
   </div>
 
-  <div class="full-width-card bottom-card">
+  <div class="base-element full-width-card bottom-card">
 
-        <h2>Understanding Bayes' Theorem and Applying It to Thought</h2>
-        <p>Bayes' Theorem helps us update our beliefs based on new evidence. Here's how it works:</p>
-        <ul>
-            <li><strong>Start with prior beliefs:</strong> What you initially think is true.</li>
-            <li><strong>Add new evidence:</strong> Evaluate new information.</li>
-            <li><strong>Update probabilities:</strong> Adjust your beliefs based on how likely the evidence is if your belief is true or false.</li>
-        </ul>
-        <p>We can apply this to critical thinking. For example, when evaluating actions or events, ask yourself:</p>
-        <ul>
-            <li>"Do I think a fascist would do this?"</li>
-            <li>"Do I think someone who is not a fascist would do this?"</li>
-        </ul>
-        <p>This approach helps contextualize actions and align them with broader patterns, avoiding the trap of evaluating things in isolation.</p>
-        <p>However, it’s important to note: if your prior belief is set at 1 (absolute certainty) or 0 (absolute impossibility), you are unlikely to let any new information change your mind. This rigid thinking can prevent you from adapting to new evidence and understanding the bigger picture.</p>
-        <p>In an era of misinformation, where we're often told to doubt our own perceptions, this method empowers us to integrate new evidence into our understanding and see the bigger picture.</p>
+    <h2>Understanding Bayes' Theorem and Applying It to Thought</h2>
+    <p>Bayes' Theorem helps us update our beliefs based on new evidence. Here's how it works:</p>
+    <ul>
+      <li><strong>Start with prior beliefs:</strong> What you initially think is true.</li>
+      <li><strong>Add new evidence:</strong> Evaluate new information.</li>
+      <li><strong>Update probabilities:</strong> Adjust your beliefs based on how likely the evidence is if your belief
+        is true or false.</li>
+    </ul>
+    <p>We can apply this to critical thinking. For example, when evaluating actions or events, ask yourself:</p>
+    <ul>
+      <li>"Do I think a fascist would do this?"</li>
+      <li>"Do I think someone who is not a fascist would do this?"</li>
+    </ul>
+    <p>This approach helps contextualize actions and align them with broader patterns, avoiding the trap of evaluating
+      things in isolation.</p>
+    <p>However, it’s important to note: if your prior belief is set at 1 (absolute certainty) or 0 (absolute
+      impossibility), you are unlikely to let any new information change your mind. This rigid thinking can prevent you
+      from adapting to new evidence and understanding the bigger picture.</p>
+    <p>In an era of misinformation, where we're often told to doubt our own perceptions, this method empowers us to
+      integrate new evidence into our understanding and see the bigger picture.</p>
 
-    
+
 
   </div>
   <footer class="footer">
-    © 2025  Created for satire and statistical fun
+    © 2025 Created for satire and statistical fun
   </footer>
 
   <script>
@@ -443,7 +479,60 @@
       const P_E = likelihood_given_F * P_F + likelihood_given_notF * P_notF;
       const P_F_given_E = (likelihood_given_F * P_F) / P_E;
 
-      document.getElementById('result').innerText = `Posterior (the likelihood the events indicate fascism): ${(P_F_given_E * 100).toFixed(0)}%`;
+
+      const resultElement = document.getElementById('result');
+      let percentage = (P_F_given_E * 100).toFixed(0); // Ensure this updates dynamically
+
+      resultElement.innerText = `${percentage}%`;
+      resultElement.style.fontWeight = 'bold';
+      resultElement.style.color = `rgb(${(percentage / 100) * 255}, 0, 0)`;
+
+      let lastTime = 0;
+      let growing = true; // Track direction of glow intensity
+
+      // Function to calculate pulse speed based on percentage
+      function calculatePulseSpeed(percentage) {
+        if (percentage <= 50) {
+          return 6000 - ((percentage / 50) * 4000); // 10 -> 30 pulses per min
+        } else {
+          return 2000 - (((percentage - 50) / 49) * 1333); // 30 -> 90 pulses per min
+        }
+      }
+
+      // Function to determine glow size dynamically
+      function calculateGlowSize(percentage) {
+        return percentage <= 50
+          ? 5 + (percentage / 50) * 10  // 5px → 15px
+          : 15 + ((percentage - 50) / 49) * 25;  // 15px → 40px
+      }
+
+      // Function to create a smooth pulsing effect
+      function pulse(time) {
+        if (!lastTime) lastTime = time;
+        const deltaTime = time - lastTime;
+
+        let pulseSpeed = calculatePulseSpeed(percentage);
+        let maxGlow = calculateGlowSize(percentage);
+
+        let glowSize = growing ? maxGlow : maxGlow * 0.5; // Shrinks down to half its size
+
+        resultElement.style.textShadow = `0 0 ${glowSize}px rgb(255, 0, 0)`;
+
+        if (deltaTime >= pulseSpeed / 2) {
+          growing = !growing; // Reverse direction of pulsing glow
+          lastTime = time;
+        }
+
+        requestAnimationFrame(pulse);
+      }
+
+      // Start pulsing with requestAnimationFrame
+      requestAnimationFrame(pulse);
+
+
+
+
+
 
       // Rotate the arm based on posterior probability
       const armImage = document.getElementById('armImage');
@@ -451,9 +540,9 @@
       const rotation =
         P_F_given_E <= 0.25
           ? -45 // Clamped at 45° down
-          : P_F_given_E >= 0.75
-          ? 45 // Clamped at 45° up
-          : (P_F_given_E - 0.5) * 90 + offset; // Gradual rotation between -45° and +45°
+          : P_F_given_E >= 0.95
+            ? 45 // Clamped at 45° up
+            : (P_F_given_E - 0.5) * 90 + offset; // Gradual rotation between -45° and +45°
 
       armImage.style.transform = `rotate(${rotation}deg)`;
     }
@@ -463,4 +552,5 @@
     updatePosterior();
   </script>
 </body>
+
 </html>
