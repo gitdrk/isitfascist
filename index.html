@@ -268,13 +268,13 @@
           <div class="text-center" id="priorValue">50%</div>
         </div>
         <div>
-          <!-- Header Row -->
+
           <div class="header-row">
             <div><strong>Event</strong></div>
             <div><strong>Likelihood a fascist would do it.</strong></div>
             <div><strong>Likelihood a non-fascist would do it</strong></div>
           </div>
-          <!-- Input Rows -->
+
           <div id="eventRows">
 
             <div class="input-row">
@@ -284,7 +284,6 @@
                   <em>Allegedly</em> endorsing great-replacement.
                 </a>
               </span>
-              <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
                 <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
                   oninput="updateSliderValue(this)">
@@ -344,7 +343,6 @@
                   Holocaust jokes after the awkward gesture.
                 </a>
               </span>
-              <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
               <div class="slider-container">
                 <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
                   oninput="updateSliderValue(this)">
@@ -363,7 +361,24 @@
                   Speaking at AfD event urging to move past 'Nazi guilt'.
                 </a>
               </span>
-              <!-- <input type="text" class="border" placeholder="Describe event" value="Liking and sharing great "> -->
+              <div class="slider-container">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
+                <span class="slider-value">50%</span>
+              </div>
+              <div class="slider-container">
+                <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
+                  oninput="updateSliderValue(this)">
+                <span class="slider-value">50%</span>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <span class="border">
+                <a href="https://abcnews.go.com/US/treasury-dept-elon-musks-team-access-federal-payment/story?id=118380399">
+                  Taking over the treasury as an un-elected / un-confirmed individual.
+                </a>
+              </span>
               <div class="slider-container">
                 <input type="range" class="row-slider" min="1" max="99" step="1" value="50"
                   oninput="updateSliderValue(this)">
@@ -381,8 +396,7 @@
         <button class="w-full border" onclick="addEventRow()">Add Your Own</button>
       </div>
     </div>
-
-    <!-- Right Panel -->
+    
     <div class="panel">
       <div class="transparent-card">
         <div class="posterior-label base-element" id="">Posterior (Likelihood your reasoning suggests fascism): <span
